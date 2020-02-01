@@ -18,16 +18,16 @@ class Payment:
         x = data.read(12).decode()
         x = str(x)
         if x=="400031E720B6":
-            print("Card No - ",x,"\n")
-            print("Thank You For Payment User ABC","\n")
-            tts.speak("Thank You For Payment User ABC")
+            print("\nCard No - ",x,"\n")
+            print("Payment Successful! Thank You For Payment User ABC","\n")
+            tts.speak("Payment Successful! Thank You For Payment User ABC")
             data.close()
             return x + " | User : ABC"
          
         elif x=="40002E16D8A0":
-            print("Card No - ",x,"\n")
-            print("Thank You For Payment User XYZ","\n")
-            tts.speak("Thank You For Payment User XYZ")
+            print("\nCard No - ",x,"\n")
+            print("Payment Successful! Thank You For Payment User XYZ","\n")
+            tts.speak("Payment Successful! Thank You For Payment User XYZ")
             data.close()
             return x + " | User : XYZ"
 

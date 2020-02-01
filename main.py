@@ -5,7 +5,7 @@ import items
 import food
 import pay
 import datetime
-
+import os
 ##
 tts = textToSpeech.TextToSpeech()
 menu = menu.MenuOptions()
@@ -134,10 +134,12 @@ def addTextToFile(paym):
     print("Added Text to File")
     
             
-
+def clss():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 if __name__ == '__main__':
     while True:
+        clss()
         tts.speak(menu.AnyKey)
         inp = input(menu.AnyKey + "\n")
         if inp != '':
