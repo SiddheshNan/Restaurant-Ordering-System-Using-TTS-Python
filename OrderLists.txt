@@ -1,0 +1,7 @@
+New Order at 2020-02-01 01:45:59.162695 For : | Burger: Chicken |  | Total Rs: 60 | Payment Method : Cash 
+New Order at 2020-02-01 01:58:07.541042 For : | Combos: Veg Burger and Fries and Coke |  | Total Rs: 196 | Payment Method : Cash 
+New Order at 2020-02-01 01:59:48.808767 For : | Shakes: Black Currant Shake |  | Total Rs: 55 | Payment Method : Cash 
+New Order at 2020-02-01 02:02:21.939185 For : | Burger: Cheese |  | Combos: Cheese Fries and Medium Coke |  | Total Rs: 201 | Payment Method : Cash 
+New Order at 2020-02-01 03:51:48.099162 For : | Combos: Egg Burger and Fries and Coke |  | Total Rs: 186 | Payment Method : Cash 
+New Order at 2020-02-01 04:04:59.874742 For : | Burger: Paneer |  | Burger: Grill Chicken |  | Shakes: Chocolate Shake |  | Combos: Veg Burger and Fries and Coke |  | Total Rs: 356 | Payment Method : Cash 
+New Order at 2020-02-01 04:21:40.447649 For : | Combos: Veg Burger and Fries and Coke |  | Total Rs: 196 | Payment Method : Cash 
