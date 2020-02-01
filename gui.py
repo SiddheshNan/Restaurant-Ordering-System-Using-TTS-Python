@@ -1,29 +1,54 @@
 import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow, QFrame
-from PyQt5.QtGui import QIcon, QFont
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+import time
 
 
-def window(text):
-   w = 900; h = 600
-   app = QApplication(sys.argv)
-   widget = QWidget()
+class App(QWidget):
+    def __init__(self, parent=None):
+        super(App, self).__init__(parent=parent)  # these values change where the main window is placed
+        self.title = 'Payment System'
+        self.left = 600
+        self.top = 400
+        self.width = 600
+        self.height = 400
+        self.setStyleSheet("QLabel {font: 30pt Roboto}")
+        self.initUI()
 
-   textLabel = QLabel(widget)
-   textLabel.setFont(QFont('Arial', 30))
-   textLabel.setText(text)
-   textLabel.move(175,130)
-   widget.setGeometry(50,50,500,500)
-   widget.setWindowTitle("Payment System")
-   widget.show()
-   sys.exit(app.exec_())
-   return text
+    def initUI(self):
+        self.setWindowTitle(self.title)
+        self.setGeometry(self.left, self.top, self.width, self.height)
+        self.createGridLayout()
+        self.time_label.text = 'Welcome to Payment System'
+        windowLayout = QVBoxLayout()
+        windowLayout.addWidget(self.horizontalGroupBox)
+        self.setLayout(windowLayout)
+        self.show()  # this sets the main window to the screen size
+
+    def createGridLayout(self):
+        self.time_label = QLabel("Welcome here", self)
+        self.horizontalGroupBox = QGroupBox()
+        layout = QGridLayout()
+        layout.addWidget(self.time_label, 0, 2)
+        self.horizontalGroupBox.setLayout(layout)
+
+
+    def updateTime(self):
+        time = self.thing
+        self.time_label.setText(time)
+        return time
+
+
+def main():
+
+    app = QApplication(sys.argv)
+    ex = App()
+    timer = QTimer()
+    timer.timeout.connect(ex.updateTime)
+    timer.start(1000)
+
+    sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
-   thing = window("gyo")
-   inp = input("somthin")
-   new = thing + " " + inp
-   print(new)
-   thing = window(new)
-   sys.exit(app.exec_())
+    main()
