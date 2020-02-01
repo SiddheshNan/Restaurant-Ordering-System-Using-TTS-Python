@@ -22,21 +22,21 @@ class Payment:
             print("Thank You For Payment User ABC","\n")
             tts.speak("Thank You For Payment User ABC")
             data.close()
-            return x + " User : ABC"
+            return x + " | User : ABC"
          
         elif x=="40002E16D8A0":
             print("Card No - ",x,"\n")
             print("Thank You For Payment User XYZ","\n")
             tts.speak("Thank You For Payment User XYZ")
             data.close()
-            return x + " User : XYZ"
+            return x + " | User : XYZ"
 
         else:
             print("Card Not Recognized..")
             tts.speak("Card Not Recognized")
             print(" \n")
             data.close()
-            return "Card Not Recognized User : Nit"
+            return "Card Not Recognized | User : N/A"
 
             
 

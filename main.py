@@ -82,7 +82,7 @@ def checkout():
             clearCart()
         elif sel == '2':
             card_no = pay.cardPay(total)
-            addTextToFile("Card" + card_no)
+            addTextToFile("Card | " + card_no)
             clearCart()
         else:
             sayThing = "Canceling Order, Going to main menu"
