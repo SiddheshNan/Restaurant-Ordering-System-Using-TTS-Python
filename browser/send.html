@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script>
+      let socket = new WebSocket("ws://localhost:8888/ws");
+      socket.onopen = function(e) {
+        console.warn("Connected to server");
+      };
+
+      socket.onmessage = function(event) {
+        console.log(`data received: ${event.data}`);
+        document.getElementById("out").innerHTML += event.data + "<br>";
+      };
+
+      socket.onclose = function(event) {
+        if (event.wasClean) {
+          console.log(
+            `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+          );
+        } else {
+          console.error("[WS close] Connection died");
+        }
+      };
+
+      socket.onerror = function(error) {
+        console.error(`[WS error] ${error.message}`);
+        alert(`[WS error] ${error.message}`);
+      };
+
+      function myFunction(e) {
+        e.preventDefault();
+        data = document.getElementById("data");
+        socket.send(data.value);
+        console.log("Data Sent : " + data.value);
+      }
+    </script>
+
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 3vh;
+        text-decoration: solid;
+        text-align: center;
+        padding: 10px;
+      }
+      button {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="out"></div>
+    <div>
+      <form action="#" id="form">
+        <input type="text" name="data" id="data" />
+        <br />
+        <br />
+        <button onclick="myFunction(event)">Send</button>
+      </form>
+    </div>
+  </body>
+</html>

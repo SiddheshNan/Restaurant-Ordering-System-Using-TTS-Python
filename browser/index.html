@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <style>
+      .textContainer {
+        text-align: center;
+        text-decoration: solid;
+        padding: 1vh;
+      }
+      table img {
+        width: 75%;
+        padding-bottom: 20px;
+        margin: 0 auto;
+      }
+      table {
+        font-size: large;
+        text-align: center;
+        margin: auto;
+      }
+      #userText {
+        text-align: center;
+        font-size: 3vh;
+        text-decoration: solid;
+        padding: 3vh;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        let socket = new WebSocket("ws://localhost:8888/ws");
+        socket.onopen = function(e) {
+          console.log("Connected to server");
+        };
+        socket.onmessage = function(event) {
+          console.log(`[message] Data received from server: ${event.data}`);
+
+          try {
+            var data_obj = JSON.parse(event.data);
+          } catch (e) {
+            console.error(e);
+            return false;
+          }
+
+          if (event.data == '{"img":"show"}') {
+            showImg();
+            return 0;
+          } else if (event.data == '{"img":"hide"}') {
+            hideImg();
+            return 0;
+          }
+
+          if (event.data == '{"chargeBlock":"show"}') {
+            showCharge();
+            return 0;
+          } else if (event.data == '{"chargeBlock":"hide"}') {
+            hideCharge();
+            return 0;
+          }
+
+          if (event.data == '{"userText":"show"}') {
+            console.log("userText shown");
+            showuserText();
+            return 0;
+          } else if (event.data == '{"userText":"hide"}') {
+            console.log("userText hidden");
+            hideuserText();
+            return 0;
+          }
+
+          if (typeof data_obj.text1 !== "undefined") {
+            document.getElementById("text1").innerHTML = data_obj.text1;
+          }
+          if (typeof data_obj.text2 !== "undefined") {
+            document.getElementById("text2").innerHTML = data_obj.text2;
+          }
+          if (typeof data_obj.charge !== "undefined") {
+            document.getElementById("charge").innerHTML = data_obj.charge;
+          }
+          if (typeof data_obj.userText !== "undefined") {
+            if (Array.isArray(data_obj.userText)) {
+              document.getElementById("userText").innerHTML =
+                '<ul class="list-group">';
+              data_obj.userText.forEach(myForEachFunction);
+              document.getElementById("userText").innerHTML += "</ul>";
+            } else {
+              document.getElementById("userText").innerHTML = data_obj.userText;
+            }
+          }
+        };
+
+        socket.onclose = function(event) {
+          if (event.wasClean) {
+            console.log(
+              `WS Connection closed cleanly, code=${event.code} reason=${event.reason}`
+            );
+          } else {
+            console.error("WS Connection died");
+          }
+        };
+
+        socket.onerror = function(error) {
+          console.error(`WS error ${error.message}`);
+        };
+
+        function myForEachFunction(item) {
+          document.getElementById("userText").innerHTML +=
+            '<li class="list-group-item">' + item + "</li>";
+        }
+
+        function hideImg() {
+          var x = document.getElementById("img");
+          x.style.display = "none";
+        }
+        function showImg() {
+          var x = document.getElementById("img");
+          x.style.display = "block";
+        }
+
+        function hideCharge() {
+          var x = document.getElementById("chargeBlock");
+          x.style.display = "none";
+        }
+        function showCharge() {
+          var x = document.getElementById("chargeBlock");
+          x.style.display = "block";
+        }
+
+        function hideuserText() {
+          var x = document.getElementById("userText");
+          x.style.display = "none";
+        }
+        function showuserText() {
+          var x = document.getElementById("userText");
+          x.style.display = "block";
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav"></ul>
+        </div>
+        <a class="navbar-brand mx-auto">Payment System</a>
+      </nav>
+    </div>
+    <div class="textContainer">
+      <div
+        style="float: right; padding-left: 10px; display: none;"
+        id="chargeBlock"
+      >
+        <div class="card" style="width: 18rem;">
+          <img
+            src="https://i.imgur.com/aOYEBEv.png"
+            class="card-img-top"
+            style="margin: 0 auto; width: 50%; height: 50%;"
+          />
+          <div class="card-body h4">
+            Total Charge <br />
+            <span id="charge">
+              N/A
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <h1 id="text1" class="display-4">Press any key to Place Order</h1>
+        <hr class="my-4" />
+        <h2 id="text2"></h2>
+      </div>
+    </div>
+    <div id="userText" style="display: none;"></div>
+    <div id="img" style="display: none;">
+      <table>
+        <tr>
+          <th>
+            <img src="https://i.imgur.com/H9yxxTD.png" alt="" />
+          </th>
+          <th>
+            <img src="https://i.imgur.com/kl1lf8X.png" alt="" />
+          </th>
+          <th>
+            <img src="https://i.imgur.com/0nLzF9y.png" alt="" />
+          </th>
+        </tr>
+        <tr>
+          <th>Press 1 for Burger</th>
+          <th>Press 2 for Shakes</th>
+          <th>Press 3 for Combo</th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
