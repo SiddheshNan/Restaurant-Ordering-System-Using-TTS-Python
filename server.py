@@ -4,7 +4,6 @@ import asyncio
 import threading
 import tornado.ioloop
 import tornado.web
-import tornado.autoreload
 asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 cl = []
@@ -43,16 +42,13 @@ app = web.Application([
     (r'/ws', SocketHandler),
     (r'/index', IndexHandler),
     (r'/debug', DebugHandler),
-    (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'}),
-    (r'/(OrderLists.txt)', web.StaticFileHandler, {'path': './'})
+    (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'})
 ])
 
 
 def startServ():
     print("trying to start tornado server")
     app.listen(8888)
-    tornado.autoreload.start()
-    tornado.autoreload.watch('OrderLists.txt')
     ioloop.IOLoop.instance().start()
 
 
@@ -63,14 +59,11 @@ class WebServer(threading.Thread):
             (r'/ws', SocketHandler),
             (r'/index', IndexHandler),
             (r'/debug', DebugHandler),
-            (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'}),
-            (r'/(OrderLists.txt)', web.StaticFileHandler, {'path': './'})
+            (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'})
 
         ])
         print("trying to start tornado server from threading")
         app.listen(8888)
-        tornado.autoreload.start()
-        tornado.autoreload.watch('OrderLists.txt')
         tornado.ioloop.IOLoop.instance().start()
 
 
