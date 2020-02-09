@@ -45,7 +45,7 @@ app = web.Application([
     (r'/debug', DebugHandler),
     (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'}),
     (r'/(OrderLists.txt)', web.StaticFileHandler, {'path': './'})
-], debug=True)
+])
 
 
 def startServ():
