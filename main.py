@@ -170,14 +170,6 @@ if __name__ == '__main__':
                     rs = items.Burgers().burgers[selection].rs
                     carts.burger.append(burger)
                     carts.rs.append(rs)
-
-                    ws.send('{"text1":" Selected' + burger +
-                            ' burger for Rupees ' + str(rs)+'"}')
-                    ws.send(
-                        '{"text2":"Press 1 for Checkout OR Press 2 to go to main menu and add more items to cart"}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print("Selected " + burger +
                           " burger for Rupees " + str(rs))
                     print(
@@ -190,49 +182,24 @@ if __name__ == '__main__':
                     sel = int(sel)
 
                     if sel == 1:
-                        ws.send('{"text1":"'+menu.goingCheck+'"}')
-                        ws.send('{"text2":""}')
-                        ws.send('{"img":"hide"}')
-                        ws.send('{"userText":"hide"}')
-
                         print(menu.goingCheck)
                         tts.speak(menu.goingCheck)
                         checkout()
                     else:
-                        ws.send('{"text1":"'+menu.goingMain+'"}')
-                        ws.send('{"text2":""}')
-                        ws.send('{"img":"hide"}')
-                        ws.send('{"userText":"hide"}')
-
                         print(menu.goingMain)
                         tts.speak(menu.goingMain)
                         continue
 
                 elif selection == foodIndex-1:  # going to main - none selected
-                    ws.send('{"text1":"'+menu.goingMain+'"}')
-                    ws.send('{"text2":""}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print(menu.goingMain)
                     tts.speak(menu.goingMain)
                     continue
 
                 elif selection == foodIndex:  # going to check - check out // has nothin to do with order id only checkout with cart items pushed
-                    ws.send('{"text1":"'+menu.goingCheck+'"}')
-                    ws.send('{"text2":""}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print(menu.goingCheck)
                     tts.speak(menu.goingCheck)
                     checkout()
                 else:
-                    ws.send('{"text1":"'+menu.invSel+'"}')
-                    ws.send('{"text2":""}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print(menu.invSel)  # invalid Selection return to Home
                     tts.speak(menu.invSel)
                     continue
@@ -248,14 +215,6 @@ if __name__ == '__main__':
                     rs = items.Shakes().shakes[selection].rs
                     carts.shakes.append(shakes)
                     carts.rs.append(rs)
-
-                    ws.send('{"text1":" Selected'+shakes +
-                            ' for Rupees' + str(rs)+'"}')
-                    ws.send(
-                        '{"text2":"Press 1 for Checkout OR Press 2 to go to main menu and add more items to cart"}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print("Selected " + shakes + " for Rupees " + str(rs))
                     print(
                         "Press 1 for Checkout OR Press 2 to go to main menu and add more items to cart")
@@ -266,49 +225,24 @@ if __name__ == '__main__':
                     sel = int(sel)
 
                     if sel == 1:
-                        ws.send('{"text1":"'+menu.goingCheck+'"}')
-                        ws.send('{"text2":""}')
-                        ws.send('{"img":"hide"}')
-                        ws.send('{"userText":"hide"}')
-
                         print(menu.goingCheck)
                         tts.speak(menu.goingCheck)
                         checkout()
                     else:
-                        ws.send('{"text1":"'+menu.goingMain+'"}')
-                        ws.send('{"text2":""}')
-                        ws.send('{"img":"hide"}')
-                        ws.send('{"userText":"hide"}')
-
                         print(menu.goingMain)
                         tts.speak(menu.goingMain)
                         continue
 
                 elif selection == foodIndex-1:  # going to main - none selected
-                    ws.send('{"text1":"'+menu.goingMain+'"}')
-                    ws.send('{"text2":""}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print(menu.goingMain)
                     tts.speak(menu.goingMain)
                     continue
 
                 elif selection == foodIndex:  # going to check - check out // has nothin to do with order id only checkout with cart items pushed
-                    ws.send('{"text1":"'+menu.goingCheck+'"}')
-                    ws.send('{"text2":""}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print(menu.goingCheck)
                     tts.speak(menu.goingCheck)
                     checkout()
                 else:
-                    ws.send('{"text1":"'+menu.invSel+'"}')
-                    ws.send('{"text2":""}')
-                    ws.send('{"img":"hide"}')
-                    ws.send('{"userText":"hide"}')
-
                     print(menu.invSel)  # invalid Selection return to Home
                     tts.speak(menu.invSel)
                     continue
@@ -347,7 +281,6 @@ if __name__ == '__main__':
                         ws.send('{"text2":""}')
                         ws.send('{"img":"hide"}')
                         ws.send('{"userText":"hide"}')
-
                         print(menu.goingCheck)
                         tts.speak(menu.goingCheck)
                         checkout()
@@ -356,7 +289,6 @@ if __name__ == '__main__':
                         ws.send('{"text2":""}')
                         ws.send('{"img":"hide"}')
                         ws.send('{"userText":"hide"}')
-
                         print(menu.goingMain)
                         tts.speak(menu.goingMain)
                         continue
@@ -366,7 +298,6 @@ if __name__ == '__main__':
                     ws.send('{"text2":""}')
                     ws.send('{"img":"hide"}')
                     ws.send('{"userText":"hide"}')
-
                     print(menu.goingMain)
                     tts.speak(menu.goingMain)
                     continue
@@ -376,7 +307,6 @@ if __name__ == '__main__':
                     ws.send('{"text2":""}')
                     ws.send('{"img":"hide"}')
                     ws.send('{"userText":"hide"}')
-
                     print(menu.goingCheck)
                     tts.speak(menu.goingCheck)
                     checkout()
@@ -385,7 +315,6 @@ if __name__ == '__main__':
                     ws.send('{"text2":""}')
                     ws.send('{"img":"hide"}')
                     ws.send('{"userText":"hide"}')
-
                     print(menu.invSel)  # invalid Selection return to Home
                     tts.speak(menu.invSel)
                     continue
@@ -395,7 +324,6 @@ if __name__ == '__main__':
                 ws.send('{"text2":""}')
                 ws.send('{"img":"hide"}')
                 ws.send('{"userText":"hide"}')
-
                 print(menu.invSel)
                 tts.speak(menu.invSel)
                 continue
