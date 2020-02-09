@@ -6,20 +6,16 @@ import food
 import pay
 import datetime
 import os
-import ws
+import ws as wss
 import json
-from threading import Thread
-import browser.server2 as bw
 import time
-# start tornado ws server
-bw.startServ()
+
 ##
 tts = textToSpeech.TextToSpeech()
 menu = menu.MenuOptions()
 carts = cart.Cart()
 pay = pay.Payment()
-# time.sleep(2)
-ws = ws.Sockets()
+ws = wss.Sockets()
 ##
 
 
@@ -193,7 +189,7 @@ def clss():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-if __name__ == '__main__':
+def doStart():
     while True:
         clss()
         ws.send('{"text1":"'+menu.AnyKey+'"}')
@@ -445,3 +441,7 @@ if __name__ == '__main__':
                 print(menu.invSel)
                 tts.speak(menu.invSel)
                 continue
+
+
+if __name__ == "__main__":
+    doStart()

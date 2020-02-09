@@ -32,9 +32,13 @@
         let socket = new WebSocket("ws://localhost:8888/ws");
         socket.onopen = function(e) {
           console.log("Connected to server");
+          document.getElementById("wsCon").innerHTML =
+            '<span class="badge badge-pill badge-success">Connected</span>';
         };
         socket.onmessage = function(event) {
           console.log(`[message] Data received from server: ${event.data}`);
+          document.getElementById("wsCon").innerHTML =
+            '<span class="badge badge-pill badge-success">Open</span>';
 
           try {
             var data_obj = JSON.parse(event.data);
@@ -91,6 +95,8 @@
         };
 
         socket.onclose = function(event) {
+          document.getElementById("wsCon").innerHTML =
+            '<span class="badge badge-pill badge-danger">Closed</span>';
           if (event.wasClean) {
             console.log(
               `WS Connection closed cleanly, code=${event.code} reason=${event.reason}`
@@ -101,6 +107,8 @@
         };
 
         socket.onerror = function(error) {
+          document.getElementById("wsCon").innerHTML =
+            '<span class="badge badge-pill badge-danger">Error</span>';
           console.error(`WS error ${error.message}`);
         };
 
@@ -139,8 +147,9 @@
     </script>
   </head>
   <body>
-    <div>
-      <!--
+    <div style="float: left; padding: 20px;"><span id="wsCon"></span></div>
+    <!--
+      <div>
       <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav"></ul>
