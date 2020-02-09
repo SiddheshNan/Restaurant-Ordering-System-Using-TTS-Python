@@ -41,6 +41,7 @@ app = web.Application([
 ])
 
 
-if __name__ == '__main__':
+def startServ():
+    print("trying to start tornado server")
     app.listen(8888)
     ioloop.IOLoop.instance().start()
