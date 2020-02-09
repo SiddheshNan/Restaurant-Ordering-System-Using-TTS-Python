@@ -20,7 +20,7 @@ class SocketHandler(websocket.WebSocketHandler):
     def on_message(self, message):
         print(message)
         for c in cl:
-            #message = json.dumps(message)
+            # message = json.dumps(message)
             c.write_message(message)
 
     def on_close(self):
@@ -42,7 +42,8 @@ app = web.Application([
     (r'/ws', SocketHandler),
     (r'/index', IndexHandler),
     (r'/debug', DebugHandler),
-    (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'})
+    (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'}),
+    (r'/(OrderLists.txt)', web.StaticFileHandler, {'path': './'})
 ])
 
 
@@ -59,7 +60,9 @@ class WebServer(threading.Thread):
             (r'/ws', SocketHandler),
             (r'/index', IndexHandler),
             (r'/debug', DebugHandler),
-            (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'})
+            (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'}),
+            (r'/(OrderLists.txt)', web.StaticFileHandler, {'path': './'})
+
         ])
         print("trying to start tornado server from threading")
         app.listen(8888)
