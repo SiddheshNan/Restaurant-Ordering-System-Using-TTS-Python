@@ -32,12 +32,8 @@ class IndexHandler(web.RequestHandler):
 
 app = web.Application([
     (r'/ws', SocketHandler),
-    (r'/index', IndexHandler)
-    #   (r'/css/(.*)', web.StaticFileHandler, {'path': './static/css'}),
-    #   (r'/js/(.*)', web.StaticFileHandler, {'path': './static/js'}),
-    #   (r'/(favicon.ico)', web.StaticFileHandler, {'path': '../'}),
-    #   (r'/(rest_api_example.png)', web.StaticFileHandler, {'path': './static'}),
-    #   (r'/(css.css)', web.StaticFileHandler, {'path': './templates'})
+    (r'/index', IndexHandler),
+    (r'/static/(.*)', web.StaticFileHandler, {'path': './static/'})
 ])
 
 
@@ -45,3 +41,7 @@ def startServ():
     print("trying to start tornado server")
     app.listen(8888)
     ioloop.IOLoop.instance().start()
+
+
+if __name__ == "__main__":
+    startServ()

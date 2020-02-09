@@ -8,19 +8,17 @@ import datetime
 import os
 import ws
 import json
-import threading
+from threading import Thread
 import browser.server2 as bw
 import time
 # start tornado ws server
-t = threading.Thread(target=bw.startServ, name='start tornado ws')
-t.daemon = True
-t.start()
+bw.startServ()
 ##
 tts = textToSpeech.TextToSpeech()
 menu = menu.MenuOptions()
 carts = cart.Cart()
 pay = pay.Payment()
-#time.sleep(2)
+# time.sleep(2)
 ws = ws.Sockets()
 ##
 
